@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Faith Over Fear Hoodie | FaithWear Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #080b12;
+      --bg-alt: #101522;
+      --accent: #f8c25c;
+      --accent-dark: #d4a446;
+      --text: #f5f5f5;
+      --muted: #c3c6d1;
+      --danger: #e15b5b;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.35);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #20263a 0, #05060a 55%, #010105 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* Layout */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(5, 6, 10, 0.9), rgba(5, 6, 10, 0.7));
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 40%;
+      background: radial-gradient(circle at 30% 15%, #ffffff, #f7e3b2 38%, #f2b75f 60%, #f08b4a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1b1305;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cart {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .nav-cart-count {
+      min-width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(248, 194, 92, 0.12);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.75rem 1.1rem 3.5rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 32rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.1rem;
+      font-size: 0.78rem;
+    }
+
+    .pill {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .pill-strong {
+      background: rgba(248, 194, 92, 0.1);
+      color: var(--accent);
+      border-color: rgba(248, 194, 92, 0.5);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #f59b4c);
+      color: #1b1305;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .hero-assurance {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* Product card */
+    .product-card {
+      background: radial-gradient(circle at 0 0, #2b3145 0, #101320 38%, #070912 100%);
+      border-radius: 26px;
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 1.6rem;
+    }
+
+    .product-media {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #05060a;
+    }
+
+    .product-main-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 360px;
+    }
+
+    .media-strip {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.2rem;
+    }
+
+    .thumb {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid transparent;
+      flex-shrink: 0;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .thumb.active {
+      border-color: var(--accent);
+    }
+
+    .media-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(5, 6, 10, 0.75);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .media-tag span {
+      color: var(--accent);
+    }
+
+    .verse-tag {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(5, 6, 10, 0.82);
+      padding: 0.4rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      max-width: 11rem;
+    }
+
+    .verse-tag strong {
+      color: var(--accent);
+    }
+
+    .product-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .product-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .product-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .stars {
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .price small {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .price-compare {
+      font-size: 0.85rem;
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+
+    .price-badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      background: rgba(80, 200, 120, 0.18);
+      color: #63d39a;
+      border-radius: 999px;
+      border: 1px solid rgba(99, 211, 154, 0.4);
+    }
+
+    .form-row {
+      margin-top: 0.7rem;
+    }
+
+    .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .size-options {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .size-pill {
+      min-width: 38px;
+      text-align: center;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.78rem;
+      cursor: pointer;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .size-pill.active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #1b1305;
+      font-weight: 600;
+    }
+
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.2rem;
+    }
+
+    .qty-control {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 0.15rem;
+      gap: 0.25rem;
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .qty-value {
+      min-width: 26px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .stock-pill {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(80, 200, 120, 0.14);
+      color: #63d39a;
+    }
+
+    .btn-wide {
+      width: 100%;
+      justify-content: center;
+      margin-top: 0.7rem;
+    }
+
+    .btn-secondary {
+      background: #161a25;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .btn-secondary:hover {
+      background: #1f2432;
+    }
+
+    .secure-row {
+      margin-top: 0.6rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .secure-row span.icon {
+      font-size: 1rem;
+    }
+
+    /* Details & FAQ */
+    .section {
+      margin-top: 2.7rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.1rem;
+      margin-top: 0.3rem;
+    }
+
+    .feature-card {
+      background: rgba(10, 13, 23, 0.92);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.9rem 1rem;
+      font-size: 0.86rem;
+    }
+
+    .feature-card h4 {
+      font-size: 0.92rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+    }
+
+    .feature-tag {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .faq-item {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.7rem 0.85rem;
+      margin-bottom: 0.5rem;
+      background: rgba(6, 9, 18, 0.95);
+    }
+
+    .faq-q {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .guarantee {
+      margin-top: 0.9rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .guarantee strong {
+      color: var(--accent);
+    }
+
+    /* Cart sidebar */
+    .cart-panel {
+      margin-top: 2.2rem;
+      background: rgba(7, 9, 16, 0.96);
+      border-radius: 22px;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+
+    .cart-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .cart-body {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .cart-line {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.25rem 0;
+    }
+
+    .cart-total {
+      margin-top: 0.4rem;
+      padding-top: 0.4rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.13);
+    }
+
+    .cart-total strong {
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .cart-note {
+      margin-top: 0.4rem;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.2rem 1.1rem 1.7rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero {
+        margin-top: 1rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .product-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        position: static;
+      }
+      .nav-links {
+        display: none;
+      }
+      .wrap {
+        padding-bottom: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <div class="logo-badge">F</div>
+        <div class="brand">FaithWear Co.</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#product">Shop</a>
+        <a href="#details">Details</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-cart">
+        Cart
+        <span class="nav-cart-count" id="navCartCount">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Limited online drop</div>
+          <h1 class="hero-title">
+            Wear your <span>Faith</span> louder than your fear.
+          </h1>
+          <p class="hero-sub">
+            The “Faith Over Fear” hoodie is a daily reminder of Psalm 91:2 and a warm, oversized essential
+            for chilly evenings, campus walks, and Sunday mornings.
+          </p>
+
+          <div class="hero-badges">
+            <span class="pill pill-strong">🔥 Over 1000+ sold via our supplier</span>
+            <span class="pill">Unisex fit</span>
+            <span class="pill">Soft fleece interior</span>
+            <span class="pill">Ships worldwide</span>
+          </div>
+
+          <div class="hero-cta-row">
+            <button class="btn btn-primary" id="heroBuyBtn">
+              Add to cart
+              <span>→</span>
+            </button>
+            <button class="btn btn-ghost" onclick="document.getElementById('details').scrollIntoView({behavior:'smooth'});">
+              See hoodie details
+            </button>
+          </div>
+
+          <div class="hero-assurance">
+            Free shipping on qualifying orders · 14-day money-back guarantee
+          </div>
+        </div>
+
+        <!-- PRODUCT CARD -->
+        <div class="product-card" id="product">
+          <div class="product-grid">
+            <div class="product-media">
+              <span class="media-tag"><span>New</span> • Online Exclusive</span>
+              <img
+                src="hoodie-front.jpg"
+                alt="Black Faith Over Fear hoodie hanging against a dark background"
+                class="product-main-img"
+                id="mainProductImage"
+              />
+              <div class="verse-tag">
+                <strong>Psalm 91:2</strong><br />
+                “He is my refuge and my fortress…”
+              </div>
+              <div class="media-strip">
+                <button class="thumb active" data-img="hoodie-front.jpg">
+                  <img src="hoodie-front.jpg" alt="Front view of Faith Over Fear hoodie" />
+                </button>
+                <button class="thumb" data-img="hoodie-back.jpg">
+                  <img src="hoodie-back.jpg" alt="Back view of Faith Over Fear hoodie" />
+                </button>
+                <button class="thumb" data-img="hoodie-closeup.jpg">
+                  <img src="hoodie-closeup.jpg" alt="Closeup of Faith Over Fear graphic text" />
+                </button>
+              </div>
+            </div>
+
+            <div class="product-body">
+              <div>
+                <h2 class="product-title">“Faith Over Fear” Graphic Hoodie</h2>
+                <p class="product-sub">
+                  Unisex black pullover hoodie with bold “Faith Over Fear” back print and verse reference.
+                  Soft inside, relaxed outside, made to keep you cozy and grounded.
+                </p>
+              </div>
+
+              <div class="rating-row">
+                <div class="stars">★★★★★</div>
+                <div>4.8 average rating</div>
+                <div>·</div>
+                <div>Verified quality via supplier</div>
+              </div>
+
+              <div class="price-row">
+                <div class="price">
+                  $<span id="productPriceDisplay">39.99</span>
+                  <small>USD</small>
+                </div>
+                <div class="price-compare">$59.99</div>
+                <div class="price-badge">Save 33%</div>
+              </div>
+
+              <div class="form-row">
+                <div class="label">Select size</div>
+                <div class="size-options" id="sizeOptions">
+                  <button class="size-pill active" data-size="S">S</button>
+                  <button class="size-pill" data-size="M">M</button>
+                  <button class="size-pill" data-size="L">L</button>
+                  <button class="size-pill" data-size="XL">XL</button>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="label">Quantity</div>
+                <div class="qty-row">
+                  <div class="qty-control">
+                    <button class="qty-btn" id="qtyMinus">−</button>
+                    <div class="qty-value" id="qtyValue">1</div>
+                    <button class="qty-btn" id="qtyPlus">+</button>
+                  </div>
+                  <span class="stock-pill">In stock · ready to ship</span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-wide" id="addToCartBtn">
+                Add to cart
+              </button>
+              <button class="btn btn-secondary btn-wide" id="checkoutBtn">
+                Go to checkout
+              </button>
+
+              <div class="secure-row">
+                <span class="icon">🔒</span> Secure checkout via your preferred payment gateway
+                <span>·</span>
+                <span>Encrypted order details</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CART SUMMARY EMBEDDED -->
+          <div class="cart-panel">
+            <div class="cart-header">
+              <div class="cart-title">Your order</div>
+              <div id="cartMiniCount">No items yet</div>
+            </div>
+            <div class="cart-body">
+              <div class="cart-line">
+                <span>Faith Over Fear Hoodie</span>
+                <span id="cartItemSummary">—</span>
+              </div>
+              <div class="cart-line">
+                <span>Shipping</span>
+                <span id="cartShipping">$0.00</span>
+              </div>
+              <div class="cart-total">
+                <div class="cart-line">
+                  <span>Total</span>
+                  <span><strong id="cartTotal">$0.00</strong></span>
+                </div>
+              </div>
+              <p class="cart-note">
+                At checkout, you can add your full shipping address and contact details. You’ll receive
+                a confirmation email once we’ve placed your order with our trusted supplier.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DETAILS -->
+      <section class="section" id="details">
+        <h3 class="section-title">Why this hoodie?</h3>
+        <p class="section-sub">
+          Perfect for everyday wear, prayer groups, Bible study nights, or just staying warm while
+          running errands. It is designed as a statement piece that feels as good as it looks.
+        </p>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-tag">Comfort</div>
+            <h4>Soft, cozy interior</h4>
+            <p>
+              A fleece-style inner lining gives you that “wrapped in a blanket” feel without being too heavy.
+              Ideal for layering in fall and winter.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-tag">Design</div>
+            <h4>Bold “Faith Over Fear” back print</h4>
+            <p>
+              Large back graphic with “Faith Over Fear” and a Psalm reference so your outfit
+              becomes a quiet testimony everywhere you go.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-tag">Fit</div>
+            <h4>Relaxed unisex fit</h4>
+            <p>
+              Slightly loose, street-wear inspired silhouette. For a more oversized look,
+              we suggest sizing up once.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-tag">Practical</div>
+            <h4>Kangaroo pocket & hood</h4>
+            <p>
+              Keep your hands warm and your essentials close. Adjustable hood for extra coverage
+              on windy or rainy days.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq">
+        <h3 class="section-title">Shipping & FAQs</h3>
+
+        <div class="faq-item">
+          <div class="faq-q">How does shipping work if this is dropshipped?</div>
+          <div class="faq-a">
+            After you place an order, we forward it to our trusted fulfillment partner, who ships
+            the hoodie directly to your door. This keeps costs low so we can pass the savings on to you.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How long will my order take to arrive?</div>
+          <div class="faq-a">
+            Typical shipping time is 7–18 business days, depending on your location. You’ll receive a
+            tracking link once your order is on the way.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">What if my hoodie arrives damaged or the wrong size?</div>
+          <div class="faq-a">
+            If there is an issue with your order, contact us within 14 days of delivery with photos,
+            and we will arrange a replacement or refund according to our policy.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How should I choose my size?</div>
+          <div class="faq-a">
+            The hoodie runs true to typical unisex sizing. If you like a very oversized, streetwear look,
+            choose one size up from your usual.
+          </div>
+        </div>
+
+        <p class="guarantee">
+          <strong>Our guarantee:</strong> If your order never arrives or arrives significantly different
+          from what you ordered, we’ll work with you to fix it or issue a refund.
+        </p>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <h3 class="section-title">Questions before you order?</h3>
+        <p class="section-sub">
+          Drop us a message and we’ll get back within one business day.
+        </p>
+        <div class="features-grid">
+          <article class="feature-card">
+            <h4>Email</h4>
+            <p>
+              <strong>YourBrand Support</strong><br />
+              <a href="mailto:support@yourbrand.com">support@yourbrand.com</a>
+            </p>
+          </article>
+          <article class="feature-card">
+            <h4>Instagram DM</h4>
+            <p>
+              Share how you style your hoodie and tag us at <strong>@faithwear.co</strong>.
+            </p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> FaithWear Co. All rights reserved.</div>
+      <div>Made with ❤️ for people who choose faith over fear.</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // CONFIG
+  const PRODUCT_PRICE = 39.99; // Change this to your selling price
+  const SHIPPING_FLAT = 0;     // Change this if you want to charge shipping
+
+  // STATE
+  let selectedSize = "S";
+  let quantity = 1;
+
+  const navCartCount = document.getElementById("navCartCount");
+  const cartMiniCount = document.getElementById("cartMiniCount");
+  const cartItemSummary = document.getElementById("cartItemSummary");
+  const cartShipping = document.getElementById("cartShipping");
+  const cartTotal = document.getElementById("cartTotal");
+  const qtyValue = document.getElementById("qtyValue");
+  const addToCartBtn = document.getElementById("addToCartBtn");
+  const heroBuyBtn = document.getElementById("heroBuyBtn");
+  const checkoutBtn = document.getElementById("checkoutBtn");
+  const productPriceDisplay = document.getElementById("productPriceDisplay");
+  const yearSpan = document.getElementById("year");
+
+  // Set initial price / year
+  productPriceDisplay.textContent = PRODUCT_PRICE.toFixed(2);
+  cartShipping.textContent = "$" + SHIPPING_FLAT.toFixed(2);
+  yearSpan.textContent = new Date().getFullYear();
+
+  function updateCartUI() {
+    if (quantity > 0) {
+      navCartCount.textContent = quantity;
+      cartMiniCount.textContent = quantity + " item" + (quantity > 1 ? "s" : "");
+      const subtotal = PRODUCT_PRICE * quantity;
+      cartItemSummary.textContent = quantity + " × $" + PRODUCT_PRICE.toFixed(2) + " (" + selectedSize + ")";
+      const total = subtotal + SHIPPING_FLAT;
+      cartTotal.textContent = "$" + total.toFixed(2);
+    } else {
+      navCartCount.textContent = "0";
+      cartMiniCount.textContent = "No items yet";
+      cartItemSummary.textContent = "—";
+      cartTotal.textContent = "$0.00";
+    }
+  }
+
+  // Size selection
+  document.getElementById("sizeOptions").addEventListener("click", function (e) {
+    if (!e.target.classList.contains("size-pill")) return;
+    const pills = document.querySelectorAll(".size-pill");
+    pills.forEach(p => p.classList.remove("active"));
+    e.target.classList.add("active");
+    selectedSize = e.target.getAttribute("data-size");
+    updateCartUI();
+  });
+
+  // Quantity controls
+  document.getElementById("qtyPlus").addEventListener("click", function () {
+    quantity++;
+    qtyValue.textContent = quantity;
+    updateCartUI();
+  });
+
+  document.getElementById("qtyMinus").addEventListener("click", function () {
+    if (quantity > 1) {
+      quantity--;
+      qtyValue.textContent = quantity;
+      updateCartUI();
+    }
+  });
+
+  // Thumbnails
+  const mainImg = document.getElementById("mainProductImage");
+  document.querySelectorAll(".thumb").forEach(thumb => {
+    thumb.addEventListener("click", function () {
+      document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+      thumb.classList.add("active");
+      const img = thumb.getAttribute("data-img");
+      mainImg.src = img;
+    });
+  });
+
+  function addToCart() {
+    // For a single-product store, simply ensure UI reflects the current quantity/size.
+    updateCartUI();
+    addToCartBtn.textContent = "Added ✔";
+    setTimeout(() => (addToCartBtn.textContent = "Add to cart"), 1200);
+    window.scrollTo({ top: document.getElementById("product").offsetTop - 60, behavior: "smooth" });
+  }
+
+  addToCartBtn.addEventListener("click", addToCart);
+  heroBuyBtn.addEventListener("click", addToCart);
+
+  checkoutBtn.addEventListener("click", function () {
+    // SIMPLE CHECKOUT HANDLING
+    // Option 1: open an email with pre-filled order (no payment gateway required)
+    const subject = encodeURIComponent("New Order – Faith Over Fear Hoodie");
+    const body = encodeURIComponent(
+      "I would like to order the following:\n\n" +
+      "Product: Faith Over Fear Hoodie\n" +
+      "Quantity: " + quantity + "\n" +
+      "Size: " + selectedSize + "\n" +
+      "Total (excluding shipping adjustments, if any): $" + (PRODUCT_PRICE * quantity).toFixed(2) + "\n\n" +
+      "Full name:\nShipping address:\nPhone number:\n\n" +
+      "You can reply with payment instructions or a payment link."
+    );
+
+    // Replace this with your brand email
+    window.location.href = "mailto:support@yourbrand.com?subject=" + subject + "&body=" + body;
+
+    /*
+      Option 2 (manual): If you have a payment link (e.g., Razorpay / Stripe),
+      you can instead redirect users there, for example:
+
+      window.open("https://your-payment-link-here.com", "_blank");
+
+      Then capture order details via email, form, or a simple backend.
+    */
+  });
+
+  // Initialize
+  updateCartUI();
+</script>
+</body>
+</html>
