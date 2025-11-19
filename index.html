@@ -1078,34 +1078,13 @@
   heroBuyBtn.addEventListener("click", addToCart);
 
   checkoutBtn.addEventListener("click", function () {
-    // SIMPLE CHECKOUT HANDLING
-    // Option 1: open an email with pre-filled order (no payment gateway required)
-    const subject = encodeURIComponent("New Order – Faith Over Fear Hoodie");
-    const body = encodeURIComponent(
-      "I would like to order the following:\n\n" +
-      "Product: Faith Over Fear Hoodie\n" +
-      "Quantity: " + quantity + "\n" +
-      "Size: " + selectedSize + "\n" +
-      "Total (excluding shipping adjustments, if any): $" + (PRODUCT_PRICE * quantity).toFixed(2) + "\n\n" +
-      "Full name:\nShipping address:\nPhone number:\n\n" +
-      "You can reply with payment instructions or a payment link."
-    );
+    window.location.href = "checkout.html";
+});
 
-    // Replace this with your brand email
-    window.location.href = "mailto:support@yourbrand.com?subject=" + subject + "&body=" + body;
-
-    /*
-      Option 2 (manual): If you have a payment link (e.g., Razorpay / Stripe),
-      you can instead redirect users there, for example:
-
-      window.open("https://your-payment-link-here.com", "_blank");
-
-      Then capture order details via email, form, or a simple backend.
-    */
-  });
 
   // Initialize
   updateCartUI();
 </script>
 </body>
 </html>
+
