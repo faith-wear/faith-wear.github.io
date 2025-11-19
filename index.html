@@ -703,7 +703,7 @@
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div class="nav-cart">
+      <div class="nav-cart" onclick="window.location.href='cart.html'">
         Cart
         <span class="nav-cart-count" id="navCartCount">0</span>
       </div>
@@ -1067,12 +1067,23 @@
   });
 
   function addToCart() {
-    // For a single-product store, simply ensure UI reflects the current quantity/size.
-    updateCartUI();
+    let cart = JSON.parse(localStorage.getItem("faithwear_cart")) || [];
+
+    cart.push({
+        name: "Faith Over Fear Hoodie",
+        size: selectedSize,
+        qty: quantity,
+        price: 3999   // INR price of hoodie
+    });
+
+    localStorage.setItem("faithwear_cart", JSON.stringify(cart));
+
     addToCartBtn.textContent = "Added ✔";
     setTimeout(() => (addToCartBtn.textContent = "Add to cart"), 1200);
-    window.scrollTo({ top: document.getElementById("product").offsetTop - 60, behavior: "smooth" });
-  }
+
+    updateCartUI();
+}
+
 
   addToCartBtn.addEventListener("click", addToCart);
   heroBuyBtn.addEventListener("click", function () {
@@ -1091,5 +1102,6 @@
 </script>
 </body>
 </html>
+
 
 
