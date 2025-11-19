@@ -1014,6 +1014,11 @@
   const productPriceDisplay = document.getElementById("productPriceDisplay");
   const yearSpan = document.getElementById("year");
 
+  const navCartBtn = document.getElementById("navCartBtn");
+  navCartBtn.addEventListener("click", function () {
+  window.location.href = "cart.html";
+});
+
   // Set initial price / year
   productPriceDisplay.textContent = PRODUCT_PRICE.toFixed(2);
   cartShipping.textContent = "$" + SHIPPING_FLAT.toFixed(2);
