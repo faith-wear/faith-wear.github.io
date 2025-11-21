@@ -1,72 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Cart – FaithWear</title>
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<style>
-  body { font-family: system-ui; padding:20px; background:#f7f7f7; }
-  .item { display:flex; gap:15px; background:white; padding:15px; border-radius:12px; margin-bottom:15px; }
-  img { width:100px; border-radius:8px; }
-  .qty { display:flex; gap:10px; margin-top:5px; }
-  button { padding:8px 14px; border:none; cursor:pointer; border-radius:8px; }
-  .checkout { width:100%; padding:15px; background:black; color:white; border-radius:40px; margin-top:20px; font-size:18px; }
-</style>
+  <meta charset="UTF-8" />
+  <title>FaithWear – Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
-
 <body>
+  <div id="root"></div>
 
-<h1>Your Cart</h1>
-<div id="cart"></div>
-<h2 id="total"></h2>
-
-<button class="checkout" onclick="window.location.href='/checkout.html'">Proceed to Checkout</button>
-
-<script>
-let cart = JSON.parse(localStorage.getItem("faithwear_cart")) || [];
-
-function render() {
-  const div = document.getElementById("cart");
-  if(cart.length === 0) { div.innerHTML="<p>Your cart is empty.</p>"; return; }
-
-  div.innerHTML = cart.map((item,i) => `
-    <div class="item">
-      <img src="${item.img}">
-      <div>
-        <h3>${item.name}</h3>
-        <p>₹${item.price}</p>
-        <div class="qty">
-          <button onclick="changeQty(${i},-1)">−</button>
-          ${item.qty}
-          <button onclick="changeQty(${i},1)">+</button>
-        </div>
-        <button onclick="removeItem(${i})" style="margin-top:10px;color:#d33;background:none">Remove</button>
-      </div>
-    </div>
-  `).join("");
-
-  document.getElementById("total").innerText =
-    "Total: ₹" + cart.reduce((t,i)=>t+i.price*i.qty,0);
-}
-
-function changeQty(i,d) {
-  cart[i].qty += d;
-  if(cart[i].qty < 1) cart[i].qty = 1;
-  save();
-}
-
-function removeItem(i) {
-  cart.splice(i,1);
-  save();
-}
-
-function save() {
-  localStorage.setItem("faithwear_cart", JSON.stringify(cart));
-  render();
-}
-
-render();
-</script>
-
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script type="text/babel" src="/app.js" data-presets="env,react"></script>
 </body>
 </html>
