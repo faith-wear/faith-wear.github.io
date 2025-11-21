@@ -2,35 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>FaithWear – Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FaithWear Co.</title>
-  <style>
-    body { font-family: system-ui; margin:0; background:#111; color:white; }
-    header { padding:20px; display:flex; justify-content:space-between; align-items:center; background:#000; }
-    a { color:white; text-decoration:none; }
-    .hero { padding:100px 20px; text-align:center; }
-    .hero h1 { font-size:50px; margin-bottom:20px; }
-    .btn { padding:14px 28px; background:white; color:black; border-radius:40px; font-weight:bold; cursor:pointer; }
-    nav a { margin-left:20px; font-size:18px; }
-  </style>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
-
 <body>
+  <div id="root"></div>
 
-<header>
-  <div style="font-size:22px; font-weight:bold;">FaithWear</div>
-  <nav>
-    <a href="/collections.html">Collections</a>
-    <a href="/cart.html">Cart</a>
-  </nav>
-</header>
+  <!-- React + ReactDOM + Babel CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-<section class="hero">
-  <h1>Faith Over Fear</h1>
-  <p>Wear your faith proudly.</p>
-  <br>
-  <a href="/collections.html"><button class="btn">Shop Collections</button></a>
-</section>
-
+  <!-- React app -->
+  <script type="text/babel" src="/app.js" data-presets="env,react"></script>
 </body>
 </html>
