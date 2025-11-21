@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Collections – FaithWear</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { font-family: system-ui; padding:20px; background:#f4f4f4; }
+  h1 { text-align:center; margin-bottom:30px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+  .card { background:white; padding:15px; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,0.1); }
+  .card img { width:100%; border-radius:10px; }
+  button { margin-top:10px; width:100%; padding:12px; background:black; color:white; border:none; border-radius:30px; cursor:pointer; }
+  header a { margin-right:20px; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="/index.html">Home</a>
+  <a href="/cart.html">Cart</a>
+</header>
+
+<h1>Our Hoodie Collection</h1>
+
+<div class="grid" id="products"></div>
+
+<script>
+const products = [
+  { id:"ps91", name:"Faith Over Fear – Psalm 91:2", price:3999, img:"images/hoodie-faithoverfear-ps91-front.jpg" },
+  { id:"crossblk", name:"Faith Over Fear Cross Hoodie", price:3499, img:"images/hoodie-faithoverfear-cross-front.jpg" },
+  { id:"pinkps56", name:"Faith Over Fear – Psalm 56:3 (Pink)", price:3799, img:"images/hoodie-faithoverfear-ps56-pink-front.jpg" },
+  { id:"ps53", name:"Faith Over Fear – Psalm 5:3", price:3599, img:"images/hoodie-faithoverfear-ps53-front.jpg" },
+  { id:"polyblk", name:"Polyester Faith Hoodie", price:2899, img:"images/hoodie-faithoverfear-poly-front.jpg" },
+  { id:"3dcross", name:"3D Cross Faith Hoodie", price:4299, img:"images/hoodie-faithoverfear-3d-cross-front.jpg" },
+  { id:"flag", name:"Faith Over Fear – American Flag", price:3799, img:"images/hoodie-faithoverfear-flag-front.jpg" },
+  { id:"holy", name:"God Is Holy Graffiti Hoodie", price:3499, img:"images/hoodie-godisholy-graffiti-front.jpg" },
+  { id:"funny", name:"Funny Jesus Prayer Hoodie", price:3299, img:"images/hoodie-jesus-prayer-funny-front.jpg" },
+  { id:"bread", name:"BREAD Inspirational Hoodie", price:3099, img:"images/hoodie-bread-toast-front.jpg" }
+];
+
+function renderGrid() {
+  const container = document.getElementById("products");
+  container.innerHTML = products.map(p => `
+    <div class="card">
+      <img src="${p.img}">
+      <h3>${p.name}</h3>
+      <p>₹${p.price}</p>
+      <button onclick="addToCart('${p.id}')">Add to Cart</button>
+    </div>
+  `).join("");
+}
+
+function addToCart(id) {
+  let cart = JSON.parse(localStorage.getItem("faithwear_cart")) || [];
+  const product = products.find(p => p.id === id);
+  cart.push({ ...product, qty:1 });
+  localStorage.setItem("faithwear_cart", JSON.stringify(cart));
+  alert("Added to cart!");
+}
+
+renderGrid();
+</script>
+
+</body>
+</html>
