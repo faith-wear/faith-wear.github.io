@@ -1,193 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Cart – FaithWear</title>
-
-    <style>
-        body {
-            font-family: system-ui, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 650px;
-            margin: auto;
-            background: white;
-            padding: 25px;
-            border-radius: 14px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        h2 {
-            margin-top: 0;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 18px;
-            border-bottom: 1px solid #ddd;
-            padding: 14px 0;
-            align-items: center;
-        }
-
-        .cart-item img {
-            width: 100px;
-            border-radius: 10px;
-        }
-
-        .item-details {
-            flex: 1;
-        }
-
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 6px;
-        }
-
-        .qty-btn {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            background: #eee;
-        }
-
-        .remove-btn {
-            background: none;
-            border: none;
-            color: #d33;
-            cursor: pointer;
-            padding: 0;
-            margin-top: 10px;
-        }
-
-        .total-box {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: right;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 14px;
-            margin-top: 20px;
-            background: black;
-            color: white;
-            border: none;
-            border-radius: 999px;
-            font-size: 17px;
-            cursor: pointer;
-        }
-
-        .empty {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 18px;
-            color: #777;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Cart – FaithWear</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+  body { font-family: system-ui; padding:20px; background:#f7f7f7; }
+  .item { display:flex; gap:15px; background:white; padding:15px; border-radius:12px; margin-bottom:15px; }
+  img { width:100px; border-radius:8px; }
+  .qty { display:flex; gap:10px; margin-top:5px; }
+  button { padding:8px 14px; border:none; cursor:pointer; border-radius:8px; }
+  .checkout { width:100%; padding:15px; background:black; color:white; border-radius:40px; margin-top:20px; font-size:18px; }
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <h2>Your Cart</h2>
+<h1>Your Cart</h1>
+<div id="cart"></div>
+<h2 id="total"></h2>
 
-    <div id="cartItems"></div>
-
-    <div id="cartTotal" class="total-box"></div>
-
-    <button class="checkout-btn" id="checkoutBtn" style="display:none;">
-        Proceed to Checkout →
-    </button>
-
-    <p id="emptyMsg" class="empty" style="display:none;">
-        Your cart is empty.<br>
-        <a href="index.html">Continue shopping</a>
-    </p>
-</div>
+<button class="checkout" onclick="window.location.href='/checkout.html'">Proceed to Checkout</button>
 
 <script>
-    // Load cart from localStorage
-    let cart = JSON.parse(localStorage.getItem("faithwear_cart")) || [];
+let cart = JSON.parse(localStorage.getItem("faithwear_cart")) || [];
 
-    const cartItemsDiv = document.getElementById("cartItems");
-    const cartTotalDiv = document.getElementById("cartTotal");
-    const emptyMsg = document.getElementById("emptyMsg");
-    const checkoutBtn = document.getElementById("checkoutBtn");
+function render() {
+  const div = document.getElementById("cart");
+  if(cart.length === 0) { div.innerHTML="<p>Your cart is empty.</p>"; return; }
 
-    function renderCart() {
-        cartItemsDiv.innerHTML = "";
+  div.innerHTML = cart.map((item,i) => `
+    <div class="item">
+      <img src="${item.img}">
+      <div>
+        <h3>${item.name}</h3>
+        <p>₹${item.price}</p>
+        <div class="qty">
+          <button onclick="changeQty(${i},-1)">−</button>
+          ${item.qty}
+          <button onclick="changeQty(${i},1)">+</button>
+        </div>
+        <button onclick="removeItem(${i})" style="margin-top:10px;color:#d33;background:none">Remove</button>
+      </div>
+    </div>
+  `).join("");
 
-        if (cart.length === 0) {
-            emptyMsg.style.display = "block";
-            checkoutBtn.style.display = "none";
-            cartTotalDiv.textContent = "";
-            return;
-        }
+  document.getElementById("total").innerText =
+    "Total: ₹" + cart.reduce((t,i)=>t+i.price*i.qty,0);
+}
 
-        emptyMsg.style.display = "none";
-        checkoutBtn.style.display = "block";
+function changeQty(i,d) {
+  cart[i].qty += d;
+  if(cart[i].qty < 1) cart[i].qty = 1;
+  save();
+}
 
-        let total = 0;
+function removeItem(i) {
+  cart.splice(i,1);
+  save();
+}
 
-        cart.forEach((item, index) => {
-            total += item.price * item.qty;
+function save() {
+  localStorage.setItem("faithwear_cart", JSON.stringify(cart));
+  render();
+}
 
-            const div = document.createElement("div");
-            div.classList.add("cart-item");
-
-            div.innerHTML = `
-                <img src="hoodie-front.jpg" alt="hoodie">
-                <div class="item-details">
-                    <strong>${item.name}</strong><br>
-                    Size: ${item.size}<br>
-                    Price: ₹${item.price}<br>
-
-                    <div class="qty-controls">
-                        <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
-                        ${item.qty}
-                        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                    </div>
-
-                    <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-                </div>
-            `;
-
-            cartItemsDiv.appendChild(div);
-        });
-
-        cartTotalDiv.textContent = "Total: ₹" + total.toLocaleString();
-    }
-
-    function changeQty(index, delta) {
-        cart[index].qty += delta;
-        if (cart[index].qty <= 0) cart[index].qty = 1;
-        saveCart();
-        renderCart();
-    }
-
-    function removeItem(index) {
-        cart.splice(index, 1);
-        saveCart();
-        renderCart();
-    }
-
-    function saveCart() {
-        localStorage.setItem("faithwear_cart", JSON.stringify(cart));
-    }
-
-    checkoutBtn.onclick = () => window.location.href = "checkout.html";
-
-    // Initialize
-    renderCart();
+render();
 </script>
 
 </body>
